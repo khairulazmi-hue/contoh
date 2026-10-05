@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Syifa! ☕✨</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- CONTAINER ANIMASI FLOATING HEARTS / FLOWERS -->
+    <div id="floating-hearts-container"></div>
+
+    <!-- TOMBOL FLOATING MUTE ALL (Otomatis muncul setelah cangkir diklik) -->
+    <button id="mute-btn" class="mute-float-btn hidden" onclick="toggleMuteAll()">🔊 Sound ON</button>
+
+    <!-- ==================== SCREEN 1: COFFEE CUP OPENER ==================== -->
+    <div id="coffee-screen" class="screen">
+        <div class="coffee-wrapper">
+            <div class="steam-container">
+                <span class="steam s1">💖</span>
+                <span class="steam s2">✨</span>
+                <span class="steam s3">🌸</span>
+            </div>
+            <div class="coffee-cup" onclick="focusPasswordInput()">
+                <div class="cup-lid"></div>
+                <div class="cup-body">
+                    <div class="cup-sleeve">
+                        <p class="cup-text">Special Brew for Syifa</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- INPUT PASSWORD TANGGAL LAHIR -->
+            <div class="passcode-box">
+                <p class="passcode-hint">Masukkan tanggal lahirmu untuk membuka pesan ☕✨</p>
+                <div class="input-group">
+                    <input type="password" id="passcode-input" placeholder="DDMMYYYY (cth: 06102005)" maxlength="10" onkeyup="checkEnterKey(event)">
+                    <button class="unlock-btn" onclick="openBirthdayWeb(event)">Buka 🔓</button>
+                </div>
+                <p id="passcode-error" class="error-msg hidden">Kode salah nih, coba tanggal lahirmu (DDMMYYYY)! 🙈</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== SCREEN 2: MAIN CONTENT ==================== -->
+    <div id="main-screen" class="screen hidden">
+        <header class="hero-section">
+            <div class="badge">Happy Birthday Syifa! 🎉</div>
+            <h1>Selamat Ulang Tahun! ✨</h1>
+            
+            <!-- AGE & TIME COUNTER FLORAL -->
+            <div class="age-counter-box floral-box">
+                <span class="floral-top-left">🌸</span>
+                <span class="floral-top-right">🌺</span>
+                <span class="floral-bottom-left">🌷</span>
+                <span class="floral-bottom-right">🏵️</span>
+
+                <p class="age-text">🌸 Momen Spesial Hari Bahagiamu ✨</p>
+                
+                <div id="countdown-timer" class="timer-grid">
+                    <div class="timer-item">
+                        <span class="flower-icon">🌸</span>
+                        <span id="days">0</span>
+                        <small>Hari</small>
+                    </div>
+                    <div class="timer-item">
+                        <span class="flower-icon">🌺</span>
+                        <span id="hours">0</span>
+                        <small>Jam</small>
+                    </div>
+                    <div class="timer-item">
+                        <span class="flower-icon">🌷</span>
+                        <span id="minutes">0</span>
+                        <small>Menit</small>
+                    </div>
+                    <div class="timer-item">
+                        <span class="flower-icon">✨</span>
+                        <span id="seconds">0</span>
+                        <small>Detik</small>
+                    </div>
+                </div>
+
+                <span class="sub-counter">Semoga selalu sehat, bahagia, dan dilimpahkan keberkahan! 💖</span>
+            </div>
+
+            <p class="sub-hero">Meskipun kita jauhan, secangkir kopi & lagu manis ini khusus buat nemenin hari spesialmu.</p>
+        </header>
+
+        <!-- Player Musik (3 Lagu) -->
+        <section class="music-card">
+            <div class="music-header">
+                <span class="music-icon">🎵</span>
+                <div>
+                    <h3>Birthday Playlist</h3>
+                    <p class="music-subtext">Pilih lagu favoritmu di bawah ya!</p>
+                </div>
+            </div>
+
+            <div class="song-selector">
+                <button class="song-btn active" onclick="switchSong(0)">✨ Niscaya</button>
+                <button class="song-btn" onclick="switchSong(1)">💖 Jatuh Suka</button>
+                <button class="song-btn" onclick="switchSong(2)">🌹 Adu Rayu</button>
+            </div>
+
+            <div class="current-song-info">
+                <div class="disc-animation" id="disc">💿</div>
+                <div>
+                    <h4 id="song-title">Niscaya</h4>
+                    <p id="song-artist">Bilal Indrajaya</p>
+                </div>
+            </div>
+
+            <audio id="audio-player" src="Niscaya.mpeg"></audio>
+            
+            <div class="player-controls">
+                <button id="play-btn" onclick="togglePlay()">▶ Play Music</button>
+            </div>
+
+            <div class="lyric-box">
+                <p id="lyric-text">"Katanya kopi itu pahit, tapi kok tiap cerita sama kamu rasanya tetep manis ya?" ☕💭</p>
+            </div>
+        </section>
+
+        <!-- Gallery Polaroid -->
+        <section class="gallery-section">
+            <h2>Memories & Gombalan Tipis 📸</h2>
+            <p class="gallery-sub">Geser ke samping (swipe) untuk melihat foto & pesan manis! Klik foto buat perbesar. ➡️</p>
+
+            <div class="polaroid-grid">
+                <div class="polaroid-card"><div class="tape"></div><div class="photo-box"><img src="syifa1.jpeg" alt="Foto 1"></div><p class="caption"> Aku perhatiin Syifa kalem, tapi kalau uda senyum bikin melayang niiiii. 😊</p></div>
+                <div class="polaroid-card"><div class="tape"></div><div class="photo-box"><img src="syifa2.jpeg" alt="Foto 2"></div><p class="caption"> Senyumanmu bener bener ngeluarin semua aura kecantikanmuu nii! 🙈</p></div>
+                <div class="polaroid-card"><div class="tape"></div><div class="photo-box"><img src="syifa3.jpeg" alt="Foto 3"></div><p class="caption"> Anak yang suka sama kopi... tapi disini bener-bener nunjukin, bahkan gula sungkem sama kamu Syifa. ☕✨</p></div>
+                <div class="polaroid-card"><div class="tape"></div><div class="photo-box"><img src="syifa4.jpeg" alt="Foto 4"></div><p class="caption"> Jarak yang terbentang diantara kita emang jauh, tapi obrolan kita bikin kejauhan ini terasa deket. 📍↔📍</p></div>
+                <div class="polaroid-card"><div class="tape"></div><div class="photo-box"><img src="syifa5.jpeg" alt="Foto 5"></div><p class="caption"> "Niscaya... setiap hari yang Syifa jalani bakal penuh kebahagiaan!" 🎵</p></div>
+                <div class="polaroid-card"><div class="tape"></div><div class="photo-box"><img src="syifa6.jpeg" alt="Foto 6"></div><p class="caption"> Harus salting ya baca ini, aku sendiri yang mikir, emang aga freak sii! 🤪</p></div>
+                <div class="polaroid-card"><div class="tape"></div><div class="photo-box"><img src="syifa7.jpeg" alt="Foto 7"></div><p class="caption"> Musik favoritmu bener bener cocok dengan kecantikan dan kemanisanmu. 🎧 Pink mood!</p></div>
+                <div class="polaroid-card"><div class="tape"></div><div class="photo-box"><img src="syifa8.jpeg" alt="Foto 8"></div><p class="caption"> Buka web ini sambil mikirin aku yang uda berusaha pasti passs!, ga, ga, becanda sambil ngopi paling manteepp!! ☕💖</p></div>
+                <div class="polaroid-card"><div class="tape"></div><div class="photo-box"><img src="syifa9.jpeg" alt="Foto 9"></div><p class="caption"> "Jatuh Suka" emang lagu yang pas buat gambarin betapa indahnya momen momen yang telah Syifa jalani sampai sekarang.</p></div>
+                <div class="polaroid-card"><div class="tape"></div><div class="photo-box"><img src="syifa10.jpeg" alt="Foto 10"></div><p class="caption"> Kalau digombalin dikit aja Syifa uda mulai terbang! Jangan tinggi-tinggi yeee terbangnya! 🎈✨</p></div>
+                <div class="polaroid-card"><div class="tape"></div><div class="photo-box"><img src="syifa11.jpeg" alt="Foto 11"></div><p class="caption"> Walau terpisah kota/daerah, kabar dan cerita Syifa selalu aku nanti nii!</p></div>
+                <div class="polaroid-card"><div class="tape"></div><div class="photo-box"><img src="syifa12.jpeg" alt="Foto 12"></div><p class="caption"> Semoga di usia baru ini makin sukses, tenang, dan makin sering ngopi santai!</p></div>
+                <div class="polaroid-card"><div class="tape"></div><div class="photo-box"><img src="syifa13.jpeg" alt="Foto 13"></div><p class="caption"> Walau sebelumnya aku suruh ngopi, sekarang gabole sring sering, mending nge Matcha sama aku, Syifa Matcha strobery! 💖</p></div>
+                <div class="polaroid-card"><div class="tape"></div><div class="photo-box"><img src="syifa15.jpeg" alt="Foto 15"></div><p class="caption"> Last but not least, Once again... Happy Birthday, Syifa! 🥳💖</p></div>
+            </div>
+        </section>
+
+        <!-- SECTION KHUSUS FOTO ISTIMEWA -->
+        <section class="special-highlight-section">
+            <div class="special-badge">✨ Special Highlight Moment ✨</div>
+            <div class="special-card">
+                <div class="special-tape"></div>
+                <div class="special-photo-box">
+                    <img src="syifa14.jpeg" alt="Momen Istimewa Syifa">
+                </div>
+                <p class="caption special-caption"> Jujur aja, diantara semua fotomu, ini yang bener bener bikin pangling, kacaauuuu!!! 📸💖✨</p>
+            </div>
+        </section>
+
+        <!-- Tombol Pindah Halaman -->
+        <section class="action-section">
+            <button class="cake-nav-btn" onclick="goToCakeScreen()">Ayo tiup lilinnyaa 🎂✨</button>
+            <button class="nav-extra-btn" onclick="goToBookScreen()">Buka Buku Penyemangat 📖💖</button>
+            <button class="nav-extra-btn" onclick="goToGameScreen()">Main Game Seru 🎮✨</button>
+        </section>
+
+        <footer>
+            <p>Made with ☕ & 💖 for a special friend.</p>
+        </footer>
+    </div>
+
+    <!-- ==================== SCREEN 3: CAKE ==================== -->
+    <div id="cake-screen" class="screen hidden">
+        <div class="cake-container">
+            <div class="cake-badge">Make a Wish! 🌠</div>
+            <h2>Make a Wish & Tiup Lilinya! 🎂</h2>
+            <p class="cake-sub">Berdoa dulu ya sebelum ditiup lilinnya...</p>
+
+            <div class="cake-wrapper">
+                <div class="cake">
+                    <div class="candle">
+                        <div id="flame" class="flame"></div>
+                        <div id="smoke" class="smoke hidden"></div>
+                    </div>
+                    <div class="strawberry-group">
+                        <div class="strawberry"></div>
+                        <div class="strawberry"></div>
+                        <div class="strawberry"></div>
+                    </div>
+                    <div class="layer layer-top">
+                        <div class="icing-topping"></div>
+                        <div class="drip drip1"></div>
+                        <div class="drip drip2"></div>
+                        <div class="drip drip3"></div>
+                        <div class="drip drip4"></div>
+                    </div>
+                    <div class="layer layer-middle"></div>
+                    <div class="layer layer-bottom"></div>
+                    <div class="plate"></div>
+                </div>
+            </div>
+
+            <button id="blow-btn" class="salting-btn" onclick="blowCandle(event)">Tiup Lilin 🌬️️✨</button>
+            
+            <div id="wish-message" class="wish-message hidden">
+                <h3>Yaaay! Selamat Ulang Tahun! 🎉💖</h3>
+                <p>Semoga semua harapan & impianmu tercapai di usia yang baru ini!</p>
+                <div class="btn-group-wish">
+                    <button class="back-btn" onclick="goToBookScreen()">Lanjut ke Buku Penyemangat 📖</button>
+                    <button class="back-btn secondary" onclick="backToMain()">⬅️️ Kembali ke Utama</button>
+                </div>
+            </div>
+        </div>
+
+        <audio id="blow-sound" src="tiuplilin.mpeg"></audio>
+        <audio id="ultah-sound" src="selamatultah.mpeg"></audio>
+    </div>
+
+    <!-- ==================== SCREEN 4: BOOK SLIDER ==================== -->
+    <div id="book-screen" class="screen hidden">
+        <div class="book-container">
+            <div class="book-header">
+                <h2>Buku Penyemangat 📖✨</h2>
+                <p>Geser halamannya perlahan, baca kapan pun kamu butuh pelukan hangat.</p>
+            </div>
+
+            <div class="book">
+                <div class="book-page active-page" id="page-1"><span class="page-num">Halaman 1</span><h3>Perasaanmu Itu Valid 🌸</h3><p>Tak apa jika hari ini terasa berat atau membingungkan. Syifa tidak harus selalu terlihat kuat, dan Syifa berhak meleampiaskan apa yang sedang Syifa rasain saat ini, cerita ke siapa aja, lampiasin kemana aja, gapapa.</p></div>
+                <div class="book-page" id="page-2"><span class="page-num">Halaman 2</span><h3>Pelan-Pelan Saja 🌿</h3><p>Dunia tidak sedang mengejarmu. Ambil napas dalam-dalam, hembuskan perlahan. Selesaikan satu hal kecil dalam satu waktu. Langkah kecil tetaplah sebuah kemajuan.</p></div>
+                <div class="book-page" id="page-3"><span class="page-num">Halaman 3</span><h3>Kamu Sudah Berjuang dengan Hebat 🤍</h3><p>Terima kasih ya sudah bertahan sampai hari ini, bahkan di hari-hari paling sunyi saat tidak ada orang yang tahu betapa kerasnya Syifa berjuang di dalam kepala Syifa sendiri.</p></div>
+                <div class="book-page" id="page-4"><span class="page-num">Halaman 4</span><h3>Saat Pikiran Mulai Bising ☕</h3><p>Kalau kepala terasa terlalu ramai atau panik mulai datang, rebahkan badanmu, seduh kopi atau minuman hangat favoritmu, lalu dengarkan lagu kesukaanmu. Biarkan pikiran itu lewat perlahan.</p></div>
+                <div class="book-page" id="page-5"><span class="page-num">Halaman 5</span><h3>Harimu Tak Harus Sempurna 🌷</h3><p>Tidak apa-apa kalau hari ini Syifa hanya berhasil bangun dari tempat tidur atau sekadar beristirahat seharian. Itu pun sudah cukup. Syifa tidak harus selalu produktif untuk merasa berharga, apapun yang Syifa lakuin, Syifa tetap sangat berharga .</p></div>
+                <div class="book-page" id="page-6"><span class="page-num">Halaman 6</span><h3>Awan Gelap Pasti Berlalu 🌤</h3><p>Perasaan cemas atau sedih ini ibarat awan mendung. Dia hadir, tapi dia tidak akan tinggal selamanya. Cerah akan datang lagi di waktu yang tepat, begitu juga dengan semua masalah syifa, pasti akan berlalu.</p></div>
+                <div class="book-page" id="page-7"><span class="page-num">Halaman 7</span><h3>Jadilah Lembut pada Dirimu 🕊️</h3><p>Ganti kata-kata keras di kepalamu dengan bisikan yang lebih hangat. Maafkan dirimu untuk hal-hal yang berada di luar kendalimu.</p></div>
+                <div class="book-page" id="page-8"><span class="page-num">Halaman 8</span><h3>Kamu Tidak Sendirian 🤝</h3><p>Meski jarak kita jauh, selalu ada tempat untukmu bercerita tanpa perlu takut dihakimi. Syifa tidak pernah sendirian menghadapi semua ini, ada me, i'm, gua, aku.</p></div>
+                <div class="book-page" id="page-9"><span class="page-num">Halaman 9</span><h3>Dunia Butuh Senyummu ✨</h3><p>Kehadiranmu membawa warna dan kehangatan tersendiri untuk orang-orang di sekitarmu. Keberadaanmu sangat berarti, lebih dari yang Syifa sadari.</p></div>
+                <div class="book-page" id="page-10"><span class="page-num">Halaman 10</span><h3>Selamat Ulang Tahun! 🥳💖</h3><p>Semoga di usia yang baru ini, hatimu terasa lebih tenang, jiwamu lebih damai, dan harimu dipenuhi hal-hal manis seperti aroma kopi di pagi hari.</p></div>
+            </div>
+
+            <div class="book-controls">
+                <button class="book-btn" onclick="prevBookPage()">⬅️ Sebelum</button>
+                <span id="book-indicator">1 / 10</span>
+                <button class="book-btn" onclick="nextBookPage()">Lanjut ➡️</button>
+            </div>
+
+            <button class="back-btn margin-top" onclick="backToMain()">⬅️ Kembali ke Halaman Utama</button>
+        </div>
+    </div>
+
+    <!-- ==================== SCREEN 5: MINI GAMES ==================== -->
+    <div id="game-screen" class="screen hidden">
+        <div class="game-container">
+            <h2>Mini Game Zone 🎮✨</h2>
+            <p class="game-sub">Pilih mini game santai buat nemenin harimu!</p>
+
+            <div class="game-menu-selector">
+                <button class="g-tab-btn active" onclick="switchGameTab(1)">☕ Tangkap Kopi</button>
+                <button class="g-tab-btn" onclick="switchGameTab(2)">🃏 Match Cards</button>
+                <button class="g-tab-btn" onclick="switchGameTab(3)">🧱 Susun Balok</button>
+                <button class="g-tab-btn" onclick="switchGameTab(4)">💖 Kuis Fun</button>
+            </div>
+
+            <!-- GAME 1 -->
+            <div id="game-box-1" class="game-box">
+                <div class="game-stats">
+                    <span>Tertangkap: <strong id="catch-score">0</strong>/5</span>
+                    <button class="game-start-btn" onclick="startCatchGame()">Start Game 🚀</button>
+                </div>
+                <div id="catch-area" class="game-area">
+                    <div id="basket" class="basket">☕ Penampung</div>
+                </div>
+            </div>
+
+            <!-- GAME 2 -->
+            <div id="game-box-2" class="game-box hidden">
+                <p class="game-hint">Cari 4 pasang kartu yang cocok!</p>
+                <div class="memory-grid" id="memory-grid"></div>
+            </div>
+
+            <!-- GAME 3 -->
+            <div id="game-box-3" class="game-box hidden">
+                <div class="game-stats">
+                    <span>Tinggi Balok: <strong id="tower-score">0</strong>/5</span>
+                    <button class="game-start-btn" onclick="dropBlock()">Drop Block! 🧱</button>
+                </div>
+                <div id="tower-area" class="tower-area"></div>
+            </div>
+
+            <!-- GAME 4 -->
+            <div id="game-box-4" class="game-box hidden">
+                <div class="game-stats">
+                    <span>Pertanyaan: <strong id="quiz-progress">1/5</strong></span>
+                    <button class="game-start-btn" onclick="initQuizGame()">Ulangi Kuis 🔄</button>
+                </div>
+                <div class="quiz-card" id="quiz-card">
+                    <h3 id="quiz-question">Pertanyaan kuis...</h3>
+                    <div class="quiz-options" id="quiz-options"></div>
+                </div>
+            </div>
+
+            <!-- OVERLAY WINNER -->
+            <div id="game-win-overlay" class="win-overlay hidden">
+                <h3>YAY! YOU WIN! 🎉🏆</h3>
+                <p id="win-text">Kamu berhasil menyelesaikan tantangannya!</p>
+                <button class="back-btn" onclick="resetGameWin()">Main Lagi 🔄</button>
+            </div>
+
+            <button class="back-btn margin-top" onclick="backToMain()">⬅️ Kembali ke Halaman Utama</button>
+        </div>
+    </div>
+
+    <!-- MODAL LIGHTBOX FOTO -->
+    <div id="photo-modal" class="photo-modal hidden" onclick="closePhotoModal()">
+        <span class="close-modal">&times;</span>
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <img id="modal-img" src="" alt="Full Foto">
+            <p id="modal-caption" class="modal-caption"></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
